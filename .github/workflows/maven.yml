@@ -85,15 +85,15 @@ jobs:
       - name: Build
         run: |-
           docker build \
-            --tag "gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA" \
-            --build-arg GITHUB_SHA="$GITHUB_SHA" \
-            --build-arg GITHUB_REF="$GITHUB_REF" \
+            --tag "gcr.io/$PROJECT_ID/$IMAGE:latest \
+            --build-arg GITHUB_SHA="latest" \
+            --build-arg GITHUB_REF="latest" \
             .
 
       # Push the Docker image to Google Container Registry
       - name: Publish
         run: |-
-          docker push "gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA"
+          docker push "gcr.io/$PROJECT_ID/$IMAGE:latest"
 
       # Set up kustomize
       - name: Set up Kustomize
@@ -103,9 +103,10 @@ jobs:
 
       - name: Display structure of downloaded files
         run: ls -R
+      - name: Comando Sed
+        run: ls -R
 
-      # Deploy the Docker image to the GKE cluster
-      #./kustomize edit set image gcr.io/PROJECT_ID/IMAGE:TAG=gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA
+
       - name: Deploy
         run: |-
           ./kustomize edit set image gcr.io/PROJECT_ID/IMAGE:TAG=gcr.io/$PROJECT_ID/$IMAGE:latest
