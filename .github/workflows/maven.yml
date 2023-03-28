@@ -49,7 +49,7 @@ jobs:
     name: Deploy App en GKE
     runs-on: ubuntu-latest
     environment: development
-    needs: build
+    needs: build-app
 
     steps:
       - name: Checkout
