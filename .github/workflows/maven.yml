@@ -85,7 +85,7 @@ jobs:
       - name: Build
         run: |-
           docker build \
-            --tag "gcr.io/$PROJECT_ID/$IMAGE:latest \
+            --tag "gcr.io/$PROJECT_ID/$IMAGE:latest" \
             --build-arg GITHUB_SHA="latest" \
             --build-arg GITHUB_REF="latest" \
             .
