@@ -102,4 +102,5 @@ jobs:
         run: |-
           ./kustomize edit set image gcr.io/PROJECT_ID/IMAGE:TAG=gcr.io/$PROJECT_ID/$IMAGE:${{ env.TAG }}
           ./kustomize build . | kubectl apply -f -
+          kubectl rollout restart deployment {{ env.DEPLOYMENT_NAME }}
           kubectl get services -o wide

@@ -16,7 +16,7 @@ public class InitController {
 	public ResponseEntity<Response> buscarCliente (@RequestBody Request payload) {
 
 		Response retorno = new Response();
-		retorno.setMessage( "Hello "+ payload.getTo()+" your message will be send");
+		retorno.setMessage( "Hello "+ payload.getTo()+" your message will be send V1");
 			return new ResponseEntity<Response>(retorno, HttpStatus.OK);
 	}	
 }
