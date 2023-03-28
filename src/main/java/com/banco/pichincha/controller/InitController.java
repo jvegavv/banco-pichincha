@@ -1,7 +1,7 @@
-package com.example.MS1.controller;
+package com.banco.pichincha.controller;
 
 
-import com.example.MS1.dto.Payload;
+import com.banco.pichincha.dto.Payload;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package com.example.MS1;
+package com.banco.pichincha;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,13 +1,13 @@
-package com.example.MS1;
+package com.banco.pichincha;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Ms1Application {
+public class BancoPichinchaApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Ms1Application.class, args);
+		SpringApplication.run(BancoPichinchaApplication.class, args);
 	}
 
 }

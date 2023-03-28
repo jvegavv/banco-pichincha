@@ -21,10 +21,11 @@ env:
   DEPLOYMENT_NAME: ${{ vars.DEPLOYMENT_NAME }} # Add your deployment name here.
   IMAGE: ${{ vars.IMAGE }}
   TAG: ${{ vars.TAG }}
+  ENVIRONMENT: development
 
 jobs:
-  build:
-
+  build-app:
+    name: Build App Java 8
     runs-on: ubuntu-latest
 
     steps:
@@ -44,10 +45,10 @@ jobs:
     - name: Test
       run: mvn test
 
-  setup-build-publish-deploy:
-    name: Setup, Build, Publish, and Deploy
+  deploy-docker-gke:
+    name: Deploy App en GKE
     runs-on: ubuntu-latest
-    environment: development
+    environment: ${{ env.ENVIRONMENT }}
     needs: build
 
     steps:
