@@ -25,6 +25,7 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    environment: production
 
     steps:
     - uses: actions/checkout@v3
@@ -38,8 +39,8 @@ jobs:
       run: mvn -B package --file pom.xml
     - uses: actions/upload-artifact@v3
       with:
-        name: my-artifact
-        path: target/
+        name: target
+        path: target
     - name: Test
       run: mvn test
 
@@ -54,8 +55,8 @@ jobs:
 
       - uses: actions/download-artifact@v3
         with:
-          name: my-artifact
-          path: target/
+          name: target
+          path: target
 
       - name: Display structure of downloaded files
         run: ls -R
