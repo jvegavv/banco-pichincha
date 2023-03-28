@@ -48,7 +48,7 @@ jobs:
   deploy-docker-gke:
     name: Deploy App en GKE
     runs-on: ubuntu-latest
-    environment: ${{ env.ENVIRONMENT }}
+    environment: development
     needs: build
 
     steps:
