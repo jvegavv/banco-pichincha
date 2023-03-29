@@ -1,4 +1,4 @@
 commonLabels:
-  app: hello
+  app: banco-pichincha
 resources:
 - deployment.yaml  

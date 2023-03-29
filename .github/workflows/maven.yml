@@ -10,30 +10,30 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "develop" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "develop" ]
 
 env:
   PROJECT_ID: ${{ secrets.GKE_PROJECT }}
-  GKE_CLUSTER: cluster-1    # Add your cluster name here.
-  GKE_ZONE: us-central1-c   # Add your cluster zone here.
-  DEPLOYMENT_NAME: hello # Add your deployment name here.
-  IMAGE: hello
-  TAG: latest
+  GKE_CLUSTER: ${{ vars.GKE_CLUSTER }}   # Add your cluster name here.
+  GKE_ZONE: ${{ vars.GKE_ZONE }}  # Add your cluster zone here.
+  DEPLOYMENT_NAME: ${{ vars.DEPLOYMENT_NAME }} # Add your deployment name here.
+  IMAGE: ${{ vars.IMAGE }}
+  TAG: ${{ vars.TAG }}
+  ENVIRONMENT: development
 
 jobs:
-  build:
-
+  build-app:
+    name: Build App Java 8
     runs-on: ubuntu-latest
-    environment: production
 
     steps:
     - uses: actions/checkout@v3
-    - name: Set up JDK 11
+    - name: Set up JDK 8
       uses: actions/setup-java@v3
       with:
-        java-version: '11'
+        java-version: '8'
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
@@ -45,11 +45,11 @@ jobs:
     - name: Test
       run: mvn test
 
-  setup-build-publish-deploy:
-    name: Setup, Build, Publish, and Deploy
+  deploy-docker-gke:
+    name: Deploy App en GKE
     runs-on: ubuntu-latest
-    environment: production
-    needs: build
+    environment: development
+    needs: build-app
 
     steps:
       - name: Checkout
@@ -59,10 +59,6 @@ jobs:
         with:
           name: target
           path: target
-
-      - name: Display structure of downloaded files
-        run: ls -R
-        working-directory: target
 
       # Setup gcloud CLI
       - uses: google-github-actions/setup-gcloud@94337306dda8180d967a56932ceb4ddcf01edae7
@@ -106,5 +102,5 @@ jobs:
         run: |-
           ./kustomize edit set image gcr.io/PROJECT_ID/IMAGE:TAG=gcr.io/$PROJECT_ID/$IMAGE:${{ env.TAG }}
           ./kustomize build . | kubectl apply -f -
-          kubectl rollout status deployment/$DEPLOYMENT_NAME
+          kubectl rollout restart deployment ${{ env.DEPLOYMENT_NAME }}
           kubectl get services -o wide

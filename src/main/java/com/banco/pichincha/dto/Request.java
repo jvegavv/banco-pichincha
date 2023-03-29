@@ -1,6 +1,6 @@
-package com.example.MS1.dto;
+package com.banco.pichincha.dto;
 
-public class Payload {
+public class Request {
 
     private String message;
     private String to;

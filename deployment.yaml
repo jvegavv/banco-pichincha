@@ -1,44 +1,44 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hello
+  name: banco-pichincha-deployment
   labels:
-    app: hello
+    app: banco-pichincha
 spec:
   replicas: 2
   strategy:
     type: Recreate
   selector:
     matchLabels:
-      app: hello
+      app: banco-pichincha
       
   template:
     metadata:
       labels:
-        app: hello
-        tier: hello
+        app: banco-pichincha
+        tier: banco-pichincha
     spec:
       containers:
-        - name: hello
-          image: gcr.io/industrial-gist-378420/hello:latest
+        - name: banco-pichincha
+          image: gcr.io/industrial-gist-378420/banco-pichincha:latest
           imagePullPolicy: Always
           ports:
           - containerPort: 8080
-            name: hello
+            name: banco-pichincha
 
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: hello
+  name: banco-pichincha-service
   labels:
-    app: hello
+    app: banco-pichincha
 spec:
   ports:
     - port: 8080
       targetPort: 8080
   selector:
-    app: hello
-    tier: hello
+    app: banco-pichincha
+    tier: banco-pichincha
   type: LoadBalancer
