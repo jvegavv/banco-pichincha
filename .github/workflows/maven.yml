@@ -89,10 +89,7 @@ jobs:
       - name: Build
         run: |-
           docker build \
-            --tag "gcr.io/$PROJECT_ID/$IMAGE:${{ env.TAG }}" \
-            --build-arg GITHUB_SHA=${{ env.TAG }}\
-            --build-arg GITHUB_REF=${{ env.TAG }}\
-            .
+            --tag "gcr.io/$PROJECT_ID/$IMAGE:${{ env.TAG }}" .
 
       # Push the Docker image to Google Container Registry
       - name: Publish

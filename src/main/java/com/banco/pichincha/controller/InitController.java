@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.*;
 public class InitController {
 
 	@PostMapping( value="", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Response> buscarCliente (@RequestBody Request payload) {
+	public ResponseEntity<Response> greeting (@RequestBody Request payload) {
 
 		Response retorno = new Response();
-		retorno.setMessage( "Hello "+ payload.getTo()+" your message will be send (PROD V1)");
+		  retorno.setMessage( "Hello "+ payload.getTo()+" your message will be send");
 			return new ResponseEntity<Response>(retorno, HttpStatus.OK);
 	}	
 }
