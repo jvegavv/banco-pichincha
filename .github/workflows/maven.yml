@@ -21,7 +21,7 @@ env:
   DEPLOYMENT_NAME: ${{ vars.DEPLOYMENT_NAME }} # Add your deployment name here.
   IMAGE: ${{ vars.IMAGE }}
   TAG: ${{ vars.TAG }}
-  ENVIRONMENT: development
+  ENVIRONMENT: production
 
 jobs:
   build-app:
