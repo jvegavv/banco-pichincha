@@ -10,9 +10,9 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: [ "develop" ]
+    branches: [ "master" ]
   pull_request:
-    branches: [ "develop" ]
+    branches: [ "master" ]
 
 env:
   PROJECT_ID: ${{ secrets.GKE_PROJECT }}
@@ -21,7 +21,7 @@ env:
   DEPLOYMENT_NAME: ${{ vars.DEPLOYMENT_NAME }} # Add your deployment name here.
   IMAGE: ${{ vars.IMAGE }}
   TAG: ${{ vars.TAG }}
-  ENVIRONMENT: development
+  ENVIRONMENT: production
 
 jobs:
   build-app:
