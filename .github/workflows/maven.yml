@@ -10,9 +10,9 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: [ ${{ vars.BRANCH }}]
+    branches: [ "develop" ]
   pull_request:
-    branches: [ ${{ vars.BRANCH }}]
+    branches: [ "develop" ]
 
 env:
   PROJECT_ID: ${{ secrets.GKE_PROJECT }}
