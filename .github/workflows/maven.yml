@@ -10,9 +10,9 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "develop" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "develop" ]
 
 env:
   PROJECT_ID: ${{ secrets.GKE_PROJECT }}
@@ -56,7 +56,7 @@ jobs:
     name: Deploy App en GKE
     runs-on: ubuntu-latest
     environment: development
-    needs: build-app
+    needs: test-app
 
     steps:
       - name: Checkout
